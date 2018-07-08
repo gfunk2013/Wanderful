@@ -1,0 +1,230 @@
+{
+    "meta": {
+        "code": 200,
+        "requestId": "5b39afc4f594df2ac815e67e"
+    },
+    "response": {
+        "suggestedFilters": {
+            "header": "Tap to show:",
+            "filters": [
+                {
+                    "name": "$-$$$$",
+                    "key": "price"
+                },
+                {
+                    "name": "Open now",
+                    "key": "openNow"
+                }
+            ]
+        },
+        "geocode": {
+            "what": "",
+            "where": "new york",
+            "center": {
+                "lat": 40.742185,
+                "lng": -73.992602
+            },
+            "displayString": "New York, NY, United States",
+            "cc": "US",
+            "geometry": {
+                "bounds": {
+                    "ne": {
+                        "lat": 40.882214,
+                        "lng": -73.907
+                    },
+                    "sw": {
+                        "lat": 40.679548,
+                        "lng": -74.047285
+                    }
+                }
+            },
+            "slug": "new-york-city-new-york",
+            "longId": "72057594043056517"
+        },
+        "warning": {
+            "text": "There aren't a lot of results near you. Try something more general, reset your filters, or expand the search area."
+        },
+        "headerLocation": "New York",
+        "headerFullLocation": "New York",
+        "headerLocationGranularity": "city",
+        "totalResults": 238,
+        "suggestedBounds": {
+            "ne": {
+                "lat": 40.78817349723497,
+                "lng": -73.96327315108033
+            },
+            "sw": {
+                "lat": 40.69819192870309,
+                "lng": -73.99803613566283
+            }
+        },
+        "groups": [
+            {
+                "type": "Recommended Places",
+                "name": "recommended",
+                "items": [
+                    {
+                        "reasons": {
+                            "count": 0,
+                            "items": [
+                                {
+                                    "summary": "This spot is popular",
+                                    "type": "general",
+                                    "reasonName": "globalInteractionReason"
+                                }
+                            ]
+                        },
+                        "venue": {
+                            "id": "412d2800f964a520df0c1fe3",
+                            "name": "Central Park",
+                            "contact": {},
+                            "location": {
+                                "address": "59th St to 110th St",
+                                "crossStreet": "5th Ave to Central Park West",
+                                "lat": 40.78408342593807,
+                                "lng": -73.96485328674316,
+                                "labeledLatLngs": [
+                                    {
+                                        "label": "display",
+                                        "lat": 40.78408342593807,
+                                        "lng": -73.96485328674316
+                                    }
+                                ],
+                                "postalCode": "10028",
+                                "cc": "US",
+                                "city": "New York",
+                                "state": "NY",
+                                "country": "United States",
+                                "formattedAddress": [
+                                    "59th St to 110th St (5th Ave to Central Park West)",
+                                    "New York, NY 10028",
+                                    "United States"
+                                ]
+                            },
+                            "categories": [
+                                {
+                                    "id": "4bf58dd8d48988d163941735",
+                                    "name": "Park",
+                                    "pluralName": "Parks",
+                                    "shortName": "Park",
+                                    "icon": {
+                                        "prefix": "https://ss3.4sqi.net/img/categories_v2/parks_outdoors/park_",
+                                        "suffix": ".png"
+                                    },
+                                    "primary": true
+                                }
+                            ],
+                            "verified": true,
+                            "stats": {
+                                "tipCount": 0,
+                                "usersCount": 0,
+                                "checkinsCount": 0,
+                                "visitsCount": 0
+                            },
+                            "beenHere": {
+                                "count": 0,
+                                "lastCheckinExpiredAt": 0,
+                                "marked": false,
+                                "unconfirmedCount": 0
+                            },
+                            "photos": {
+                                "count": 0,
+                                "groups": []
+                            },
+                            "hereNow": {
+                                "count": 0,
+                                "summary": "Nobody here",
+                                "groups": []
+                            }
+                        },
+                        "referralId": "e-0-412d2800f964a520df0c1fe3-0"
+                    },
+                    {
+                        "reasons": {
+                            "count": 0,
+                            "items": [
+                                {
+                                    "summary": "This spot is popular",
+                                    "type": "general",
+                                    "reasonName": "globalInteractionReason"
+                                }
+                            ]
+                        },
+                        "venue": {
+                            "id": "430d0a00f964a5203e271fe3",
+                            "name": "Brooklyn Bridge Park",
+                            "contact": {},
+                            "location": {
+                                "address": "Main St",
+                                "crossStreet": "Plymouth St",
+                                "lat": 40.702282,
+                                "lng": -73.996456,
+                                "labeledLatLngs": [
+                                    {
+                                        "label": "display",
+                                        "lat": 40.702282,
+                                        "lng": -73.996456
+                                    }
+                                ],
+                                "postalCode": "11201",
+                                "cc": "US",
+                                "neighborhood": "DUMBO, Brooklyn, NY",
+                                "city": "Brooklyn",
+                                "state": "NY",
+                                "country": "United States",
+                                "formattedAddress": [
+                                    "Main St (Plymouth St)",
+                                    "Brooklyn, NY 11201",
+                                    "United States"
+                                ]
+                            },
+                            "categories": [
+                                {
+                                    "id": "4bf58dd8d48988d163941735",
+                                    "name": "Park",
+                                    "pluralName": "Parks",
+                                    "shortName": "Park",
+                                    "icon": {
+                                        "prefix": "https://ss3.4sqi.net/img/categories_v2/parks_outdoors/park_",
+                                        "suffix": ".png"
+                                    },
+                                    "primary": true
+                                }
+                            ],
+                            "verified": true,
+                            "stats": {
+                                "tipCount": 0,
+                                "usersCount": 0,
+                                "checkinsCount": 0,
+                                "visitsCount": 0
+                            },
+                            "beenHere": {
+                                "count": 0,
+                                "lastCheckinExpiredAt": 0,
+                                "marked": false,
+                                "unconfirmedCount": 0
+                            },
+                            "photos": {
+                                "count": 0,
+                                "groups": []
+                            },
+                            "hereNow": {
+                                "count": 1,
+                                "summary": "One other person is here",
+                                "groups": [
+                                    {
+                                        "type": "others",
+                                        "name": "Other people here",
+                                        "count": 1,
+                                        "items": []
+                                    }
+                                ]
+                            }
+                        },
+                        "referralId": "e-0-430d0a00f964a5203e271fe3-1"
+                    }
+                ]
+            }
+        ]
+    }
+}
