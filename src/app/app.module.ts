@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '../../node_modules/@angular/forms';
 
 import { GlobalVarService } from './shared/global-var.service';
 import { MatchHeightDirective } from './shared/match-height.directive';
@@ -14,24 +15,28 @@ import { FooterComponent } from './footer/footer.component';
 import { WeatherListComponent } from './weather-list/weather-list.component';
 import { VenueListComponent } from './venue-list/venue-list.component';
 
+
 @NgModule({
   declarations: [
     MatchHeightDirective,
-    ValidUvPipe,
-    CityNamePipe,
     AppComponent,
     NavbarComponent,
     FooterComponent,
     WeatherListComponent,
     VenueListComponent,
+    ValidUvPipe,
+    CityNamePipe,
   ],
   imports: [
     BrowserModule,
     NgbModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
-    GlobalVarService
+    GlobalVarService,
+    ValidUvPipe,
+    CityNamePipe,
   ],
   bootstrap: [AppComponent]
 })
