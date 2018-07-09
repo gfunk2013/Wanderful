@@ -18,13 +18,17 @@ export class WeatherListComponent implements OnInit {
 
   dayList: DayWithAstro[];
   errorMessage: string;
-
-  test(): void {
-    console.log(this._globalVarService.city);
-  }
+  city = this._globalVarService.city;
 
   ngOnInit(): void {
-    this._weatherService.getWeatherDays().subscribe(
+    this._weatherService.getWeatherDays(this._globalVarService.city).subscribe(
+      dayArray => this.dayList = dayArray
+    );
+    this._globalVarService.cityChanged.switchMap(
+      newCity => {
+        this.city = newCity;
+        return this._weatherService.getWeatherDays(newCity);
+      }).subscribe(
       dayArray => this.dayList = dayArray
     );
   }

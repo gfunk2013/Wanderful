@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { GlobalVarService } from './shared/global-var.service';
 import { MatchHeightDirective } from './shared/match-height.directive';
 import { ValidUvPipe } from './weather-list/valid-uv.pipe';
+import { CityNamePipe } from './shared/city-name.pipe';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -17,6 +18,7 @@ import { VenueListComponent } from './venue-list/venue-list.component';
   declarations: [
     MatchHeightDirective,
     ValidUvPipe,
+    CityNamePipe,
     AppComponent,
     NavbarComponent,
     FooterComponent,
@@ -29,8 +31,7 @@ import { VenueListComponent } from './venue-list/venue-list.component';
     HttpClientModule
   ],
   providers: [
-    GlobalVarService,
-    ValidUvPipe
+    GlobalVarService
   ],
   bootstrap: [AppComponent]
 })

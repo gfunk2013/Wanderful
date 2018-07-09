@@ -5,8 +5,12 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/observable/from';
+import 'rxjs/add/operator/switchMap';
 
 import { GlobalVarService } from '../shared/global-var.service';
+import { PhotoService } from './photo.service';
 import {Venue, VenueData} from './venue_interfaces';
 
 @Injectable({
@@ -16,13 +20,13 @@ export class VenueService {
 
   constructor(
     private _http: HttpClient,
-    private _GlobalVarService: GlobalVarService) { }
+    private _GlobalVarService: GlobalVarService,
+    private _photoService: PhotoService) { }
 
-  venueUrl = 'https://api.foursquare.com/v2/venues/';
+  venueUrlPrefix = 'https://api.foursquare.com/v2/venues/';
   venueLimit = '8';
 
-  private fetchVenueUrl = this.venueUrl +
-    'explore?near=' + this._GlobalVarService.city +
+  private venueUrlSuffix =
     '&limit=' + this.venueLimit +
     '&client_id=' + this._GlobalVarService.venueClientId +
     '&client_secret=' + this._GlobalVarService.venueClientSecret +
@@ -33,15 +37,31 @@ export class VenueService {
     return Observable.throw(err.message);
   }
 
-  getVenueData(): Observable<VenueData> {
-    return this._http.get<VenueData>(this.fetchVenueUrl)
+  getVenueData(city): Observable<VenueData> {
+    return this._http.get<VenueData>(this.venueUrlPrefix
+      + 'explore?near=' + city + this.venueUrlSuffix)
       // .do(data => console.log(data))
       .catch(this.handleError);
   }
 
-  getVenues(): Observable<Venue[]> {
-    return this.getVenueData().map(
+  getVenues(city): Observable<Venue[]> {
+    return this.getVenueData(city).map(
       (venueData: VenueData) => venueData.response.groups[0].items.map(
         item => item.venue));
+  }
+
+  getVenuesAndPhotos(city): Observable<Venue> {
+    return this.getVenues(city).switchMap(
+      venueArray => Observable.from(venueArray)
+    ).mergeMap(
+      venue => {
+        return this._photoService.getPhotos(venue.id).map(
+          photoArray => {
+            venue.photoArray = photoArray;
+            return venue;
+          }
+        );
+      }
+    );
   }
 }

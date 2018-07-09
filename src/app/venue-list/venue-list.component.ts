@@ -1,17 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/throw';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/mergeMap';
-import 'rxjs/add/observable/from';
-import 'rxjs/add/operator/switchMap';
-
+import { GlobalVarService } from '../shared/global-var.service';
 import { Venue } from './venue_interfaces';
 import { VenueService } from './venue.service';
-import { PhotoService } from './photo.service';
 
 @Component({
   selector: 'app-venue-list',
@@ -21,29 +12,27 @@ import { PhotoService } from './photo.service';
 export class VenueListComponent implements OnInit {
 
   constructor(
-    private _venueService: VenueService,
-    private _photoService: PhotoService
+    private _globalVarService: GlobalVarService,
+    private _venueService: VenueService
   ) { }
 
   errorMessage: string;
   venueList: Venue[] = [];
+  city = this._globalVarService.city;
 
   ngOnInit(): void {
-    this._venueService.getVenues().switchMap(
-      venueArray => Observable.from(venueArray)
-    ).mergeMap(
-      venue => {
-        return this._photoService.getPhotos(venue.id).map(
-          photoArray => {
-            venue.photoArray = photoArray;
-            return venue;
-          }
-        );
-      }
-    ).subscribe(
-      venue => this.venueList.push(venue)
+    this._venueService.getVenuesAndPhotos(this._globalVarService.city)
+    .subscribe(
+      venue => {this.venueList.push(venue); console.log(venue); }
     );
-
+    this._globalVarService.cityChanged.switchMap(
+      newCity => {
+        this.city = newCity;
+        this.venueList = [];
+        return this._venueService.getVenuesAndPhotos(newCity);
+      }).subscribe(
+        venue => {this.venueList.push(venue); console.log(venue); }
+    );
   }
 
 }

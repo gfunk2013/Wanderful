@@ -18,29 +18,23 @@ export class WeatherService {
     private _http: HttpClient,
     private _globalVarService: GlobalVarService) { }
 
-  private weatherUrl = 'https://api.apixu.com/' + this._globalVarService.weatherVersion + '/forecast.json';
-  days = '7';
-  hour = '11';
+  private weatherUrlPrefix = 'https://api.apixu.com/v1/forecast.json?key=' + this._globalVarService.weatherKey;
 
-  private fetchWeatherUrl = this.weatherUrl +
-  '?key=' + this._globalVarService.weatherKey +
-  '&q=' + this._globalVarService.city +
-  '&days=' + this.days +
-  '&hour=' + this.hour;
+  private weatherUrlSuffix = '&days=7&hour=11';
 
   private handleError(err: HttpErrorResponse) {
     console.log(err.message);
     return Observable.throw(err.message);
   }
 
-  getWeatherData(): Observable<WeatherData> {
-    return this._http.get<WeatherData>(this.fetchWeatherUrl)
+  getWeatherData(city): Observable<WeatherData> {
+    return this._http.get<WeatherData>( this.weatherUrlPrefix + '&q=' + city + this.weatherUrlSuffix)
       // .do(data => console.log(data))
       .catch(this.handleError);
   }
 
-  getWeatherDays(): Observable<DayWithAstro[]> {
-    return this.getWeatherData().map(
+  getWeatherDays(city): Observable<DayWithAstro[]> {
+    return this.getWeatherData(city).map(
       (weatherData: WeatherData) => weatherData.forecast.forecastday.map(
         dayEntity => {
           const dayWithAstro: DayWithAstro = {date: dayEntity.date,
