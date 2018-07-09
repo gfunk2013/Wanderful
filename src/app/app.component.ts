@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { SimpleGlobal } from '../../node_modules/ng2-simple-global';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +6,7 @@ import { SimpleGlobal } from '../../node_modules/ng2-simple-global';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  constructor() {}
   title = 'wanderful';
-  constructor(private sg: SimpleGlobal) {}
   ngOnInit() {}
 }

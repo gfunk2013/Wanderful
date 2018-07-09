@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SimpleGlobal } from '../../../node_modules/ng2-simple-global';
+
+import { GlobalVarService } from '../shared/global-var.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,17 +9,15 @@ import { SimpleGlobal } from '../../../node_modules/ng2-simple-global';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private sg: SimpleGlobal) { }
+  constructor(private _globalVariableService: GlobalVarService) { }
 
   isNavbarCollapsed = true;
 
   submitCity() {
-    this.sg['placeholder'] = 'this is a new placeholder';
-    console.log(this.sg['placeholder']);
+    this._globalVariableService.city = 'chicago';
   }
 
   ngOnInit() {
-    console.log(this.sg['placeholder']);
   }
 
 }

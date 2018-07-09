@@ -20,11 +20,13 @@ import { PhotoService } from './photo.service';
 })
 export class VenueListComponent implements OnInit {
 
+  constructor(
+    private _venueService: VenueService,
+    private _photoService: PhotoService
+  ) { }
+
   errorMessage: string;
   venueList: Venue[] = [];
-
-  constructor(private _venueService: VenueService,
-              private _photoService: PhotoService) { }
 
   ngOnInit(): void {
     this._venueService.getVenues().switchMap(
@@ -39,7 +41,7 @@ export class VenueListComponent implements OnInit {
         );
       }
     ).subscribe(
-      venue => {this.venueList.push(venue); console.log(this.venueList); }
+      venue => this.venueList.push(venue)
     );
 
   }

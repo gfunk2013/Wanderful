@@ -6,6 +6,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 
+import { GlobalVarService } from '../shared/global-var.service';
 import { WeatherData, DayWithAstro} from './weather_interfaces';
 
 @Injectable({
@@ -13,19 +14,19 @@ import { WeatherData, DayWithAstro} from './weather_interfaces';
 })
 export class WeatherService {
 
-  weatherUrl = 'https://api.apixu.com/v1/forecast.json';
-  private weatherKey = '7df1c3ea61824ccab76184348182003';
-  city = 'new_york';
+  constructor(
+    private _http: HttpClient,
+    private _globalVarService: GlobalVarService) { }
+
+  private weatherUrl = 'https://api.apixu.com/' + this._globalVarService.weatherVersion + '/forecast.json';
   days = '7';
   hour = '11';
 
   private fetchWeatherUrl = this.weatherUrl +
-  '?key=' + this.weatherKey +
-  '&q=' + this.city +
+  '?key=' + this._globalVarService.weatherKey +
+  '&q=' + this._globalVarService.city +
   '&days=' + this.days +
   '&hour=' + this.hour;
-
-  constructor( private _http: HttpClient) { }
 
   private handleError(err: HttpErrorResponse) {
     console.log(err.message);

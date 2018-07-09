@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { SimpleGlobal } from '../../../node_modules/ng2-simple-global';
 
 import { DayWithAstro } from './weather_interfaces';
 import { WeatherService } from './weather.service';
+import { GlobalVarService } from '../shared/global-var.service';
 
 @Component({
   selector: 'app-weather-list',
@@ -11,13 +11,17 @@ import { WeatherService } from './weather.service';
 })
 export class WeatherListComponent implements OnInit {
 
+  constructor(
+    private _globalVarService: GlobalVarService,
+    private _weatherService: WeatherService
+  ) { }
+
   dayList: DayWithAstro[];
   errorMessage: string;
 
-  constructor(
-    private sg: SimpleGlobal,
-    private _weatherService: WeatherService
-  ) { }
+  test(): void {
+    console.log(this._globalVarService.city);
+  }
 
   ngOnInit(): void {
     this._weatherService.getWeatherDays().subscribe(
