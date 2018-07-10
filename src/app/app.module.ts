@@ -5,6 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '../../node_modules/@angular/forms';
 import { RouterModule } from '@angular/router';
 
+import { NgbdCarouselBasicComponent } from './carousel/carousel-basic.component';
+
 import { GlobalVarService } from './shared/global-var.service';
 import { MatchHeightDirective } from './shared/match-height.directive';
 import { ValidUvPipe } from './weather-list/valid-uv.pipe';
@@ -21,6 +23,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 
 @NgModule({
   declarations: [
+    NgbdCarouselBasicComponent,
     MatchHeightDirective,
     AppComponent,
     NavbarComponent,
@@ -40,6 +43,9 @@ import { WelcomeComponent } from './welcome/welcome.component';
     RouterModule.forRoot([
       { path: 'weather', component: WeatherListComponent},
       { path: 'venues', component: VenueListComponent},
+      { path: 'welcome', component: WelcomeComponent},
+      { path: '', redirectTo: 'welcome', pathMatch: 'full'},
+      { path: '**', redirectTo: 'welcome', pathMatch: 'full'}
     ])
   ],
   providers: [
