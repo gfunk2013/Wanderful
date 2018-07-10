@@ -14,6 +14,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { WeatherListComponent } from './weather-list/weather-list.component';
 import { VenueListComponent } from './venue-list/venue-list.component';
+import { ResizeIconPipe } from './weather-list/resize-icon.pipe';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { VenueListComponent } from './venue-list/venue-list.component';
     VenueListComponent,
     ValidUvPipe,
     CityNamePipe,
+    ResizeIconPipe,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +39,7 @@ import { VenueListComponent } from './venue-list/venue-list.component';
     GlobalVarService,
     ValidUvPipe,
     CityNamePipe,
+    ResizeIconPipe
   ],
   bootstrap: [AppComponent]
 })

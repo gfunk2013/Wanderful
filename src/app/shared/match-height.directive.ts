@@ -7,7 +7,7 @@ import { Attribute } from '@angular/compiler';
 export class MatchHeightDirective implements AfterViewChecked {
 
   // tslint:disable-next-line:no-input-rename
-  @Input('appMatchHeight') targetClass: string;
+  @Input('appMatchHeight') targetClasses: string;
 
   constructor(private parentElement: ElementRef) { }
 
@@ -37,12 +37,19 @@ export class MatchHeightDirective implements AfterViewChecked {
       );
   }
 
+  multipleMatchHeight(parent: HTMLElement, classNameList) {
+    const classArray = classNameList.split(' ');
+    for (const className of classArray) {
+      this.matchHeight(parent, className);
+    }
+  }
+
   ngAfterViewChecked() {
-    this.matchHeight(this.parentElement.nativeElement, this.targetClass);
+    this.multipleMatchHeight(this.parentElement.nativeElement, this.targetClasses);
   }
 
   @HostListener('window:resize') onResize() {
-    this.matchHeight(this.parentElement.nativeElement, this.targetClass);
+    this.multipleMatchHeight(this.parentElement.nativeElement, this.targetClasses);
   }
 
 }

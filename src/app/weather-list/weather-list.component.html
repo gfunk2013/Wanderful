@@ -5,24 +5,23 @@
     </div>
   </div>
 
-  <div class="row" appMatchHeight="weather-condition">
+  <div class="row" appMatchHeight="weatherCondition">
 
     <div class=" col-md-3 col-sm-4" *ngFor="let day of dayList ">
       <div class="card mb-3 box-shadow">
-        <img class="card-img-top" [src]='day.condition.icon'>
+        <img class="card-img-top" [src]='this._resizeIconPipe.transform(day.condition.icon)'>
         <div class="card-header">
           <div class="card-title">
             <h3>{{day.date | date:'E, LLL dd'}}</h3>
           </div>
         </div>
         <div class="card-body">
-          <p class="card-text weather-condition">{{day.condition.text}}</p>
+          <p class="card-text weatherCondition">{{day.condition.text}}</p>
           <ul class="list-group list-group-flush">
             <li class="list-group-item">Avg. Temp: {{day.avgtemp_f}}°F</li>
             <li class="list-group-item">Rain Fall: {{day.totalprecip_in}} in.</li>
             <li class="list-group-item">UV index: {{day.uv | validUv}}</li>
           </ul>
-
         </div>
         <div class="card-footer">
           <button type="button" class="btn btn-sm btn-outline-secondary">More Details</button>

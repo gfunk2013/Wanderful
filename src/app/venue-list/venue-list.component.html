@@ -1,7 +1,35 @@
-<div class="container">
-    <div class="row">
-        <div class="header">
-          <h1>Interesting places in {{city | cityName | titlecase}}</h1>
+<div class="container" *ngIf="venueList">
+  <div class="row">
+    <div class="header">
+      <h1>Places to see in {{city | cityName | titlecase}}</h1>
+    </div>
+  </div>
+
+  <div class="row" appMatchHeight = "venueAddress venueName venueDiv">
+
+    <div class="col-sm-6 col-lg-3" *ngFor="let venue of venueList ">
+      <div class="card mb-3 box-shadow venueDiv">
+        <img class="card-img-top"
+          [src]='venue.photoArray[0].prefix + "300x400" + venue.photoArray[0].suffix'/>
+        <div class="card-header">
+          <div class="card-title">
+            <h3 class="venueName">{{venue.name | cityName | titlecase}}</h3>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Address: </h3>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item venueAddress">{{venue.location.formattedAddress[0]}}</li>
+            <li class="list-group-item">{{venue.location.formattedAddress[1]}}</li>
+            <li class="list-group-item">{{venue.location.formattedAddress[2]}}</li>
+          </ul>
+
+        </div>
+        <div class="card-footer">
+          <button type="button" class="btn btn-sm btn-outline-secondary">More Details</button>
         </div>
       </div>
+    </div>
+
+  </div>
 </div>

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { DayWithAstro } from './weather_interfaces';
 import { WeatherService } from './weather.service';
 import { GlobalVarService } from '../shared/global-var.service';
+import { ResizeIconPipe } from './resize-icon.pipe';
 
 @Component({
   selector: 'app-weather-list',
@@ -13,7 +14,8 @@ export class WeatherListComponent implements OnInit {
 
   constructor(
     private _globalVarService: GlobalVarService,
-    private _weatherService: WeatherService
+    private _weatherService: WeatherService,
+    public _resizeIconPipe: ResizeIconPipe
   ) { }
 
   dayList: DayWithAstro[];
@@ -22,7 +24,7 @@ export class WeatherListComponent implements OnInit {
 
   ngOnInit(): void {
     this._weatherService.getWeatherDays(this._globalVarService.city).subscribe(
-      dayArray => this.dayList = dayArray
+      dayArray => { console.log(dayArray); return this.dayList = dayArray; }
     );
     this._globalVarService.cityChanged.switchMap(
       newCity => {

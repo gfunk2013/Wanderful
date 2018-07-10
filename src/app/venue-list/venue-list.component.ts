@@ -23,7 +23,7 @@ export class VenueListComponent implements OnInit {
   ngOnInit(): void {
     this._venueService.getVenuesAndPhotos(this._globalVarService.city)
     .subscribe(
-      venue => {this.venueList.push(venue); console.log(venue); }
+      venue => this.venueList.push(venue)
     );
     this._globalVarService.cityChanged.switchMap(
       newCity => {
@@ -31,7 +31,7 @@ export class VenueListComponent implements OnInit {
         this.venueList = [];
         return this._venueService.getVenuesAndPhotos(newCity);
       }).subscribe(
-        venue => {this.venueList.push(venue); console.log(venue); }
+        venue => this.venueList.push(venue)
     );
   }
 
